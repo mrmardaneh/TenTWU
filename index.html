@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hy Forex Market</title>
+<script src="https://sdk.minepi.com/pi-sdk.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1f;--p:#121936;--p2:#1a2350;--l:#27316b;--t:#eef1ff;--m:#8e9acb;--v:#7c5cff;--c:#22d3ee;--g:#f5b83d;--u:#19c37d;--d:#ff4d6d}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--t);font-family:Vazirmatn,Tahoma,sans-serif;height:100%}
+body{padding-top:env(safe-area-inset-top,0);padding-bottom:calc(64px + env(safe-area-inset-bottom,0))}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:12px 14px;background:linear-gradient(90deg,#1b1458,#0e3a5c);border-bottom:1px solid var(--l)}
+header b{flex:1;font-size:17px;font-weight:800;background:linear-gradient(90deg,var(--g),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+#user{font-size:12px;color:var(--c)}.dot{width:9px;height:9px;border-radius:50%;background:var(--d)}.dot.on{background:var(--u);box-shadow:0 0 8px var(--u)}
+#banner{display:none;margin:10px 14px 0;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,#5b2bd6,#d6366b);font-size:13px}
+main{padding:12px 14px;max-width:760px;margin:auto}
+.pg{display:none}.pg.on{display:block}
+h2{font-size:15px;margin:16px 0 8px;font-weight:800}
+.card{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mv{border-radius:16px;padding:14px;cursor:pointer;min-height:96px}
+.mv small{display:block;font-size:12px;opacity:.9}.mv b{display:block;font-size:17px;margin:4px 0}.mv span{font-size:22px;font-weight:800;direction:ltr;display:inline-block}
+.g1{background:linear-gradient(135deg,#0c8a5f,#19c37d 60%,#7cf5c6)}.g2{background:linear-gradient(135deg,#a3123a,#ff4d6d 60%,#ff9aa9)}
+.g3{background:linear-gradient(135deg,#4527c9,#7c5cff 60%,#b6a4ff)}.g4{background:linear-gradient(135deg,#0b6d8a,#22d3ee 60%,#a5f0ff);color:#04202a}
+.tg{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;padding:14px;border-radius:16px;background:linear-gradient(90deg,#229ed9,#1c6fd1);color:#fff;font-weight:800;text-decoration:none;font-size:15px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--p);border:1px solid var(--l);border-radius:14px;margin-bottom:8px;cursor:pointer}
+.row .r{direction:ltr;text-align:left}.row .p{font-weight:600}
+.chip{font-size:12px;padding:2px 8px;border-radius:99px;direction:ltr;display:inline-block}
+.up{color:var(--u)}.dn{color:var(--d)}.chip.up{background:#19c37d22}.chip.dn{background:#ff4d6d22}
+.tabs{display:flex;gap:8px;margin-bottom:10px;overflow-x:auto}
+.tab,.btn{padding:9px 14px;border-radius:11px;border:1px solid var(--l);background:var(--p);color:var(--m);font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.tab.on{background:linear-gradient(90deg,var(--v),var(--c));color:#fff;border-color:transparent}
+.btn.buy{background:var(--u);color:#00281a;border:0;font-weight:800}.btn.sell{background:var(--d);color:#fff;border:0;font-weight:800}
+.btn.pri{background:linear-gradient(90deg,var(--v),var(--c));color:#fff;border:0;font-weight:800}
+.cvb{height:380px;background:var(--p);border:1px solid var(--l);border-radius:14px;overflow:hidden}
+canvas{width:100%;height:100%;display:block}
+input,select{background:var(--p2);color:var(--t);border:1px solid var(--l);border-radius:10px;padding:10px;font:inherit;width:100%}
+input[type=checkbox]{width:auto}
+label.o{font-size:12px;color:var(--m);display:inline-flex;align-items:center;gap:4px;margin-left:10px}
+.f{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}
+iframe{width:100%;height:520px;border:0;border-radius:14px;background:var(--p)}
+.an{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px;border-radius:14px;background:var(--p);border:1px solid var(--l);margin-bottom:8px;font-size:13px}
+.note{font-size:11px;color:var(--m);line-height:1.9;margin-top:8px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#0d1330f2;border-top:1px solid var(--l);padding-bottom:env(safe-area-inset-bottom,0);backdrop-filter:blur(8px)}
+nav button{flex:1;padding:9px 0 7px;background:none;border:0;color:var(--m);font:inherit;font-size:11px;cursor:pointer}
+nav button i{display:block;font-style:normal;font-size:19px}nav button.on{color:var(--g)}
+.hid{display:none!important}
+</style>
+</head>
+<body>
+<header><b id="ttl">Hy Forex Market</b><span id="user"></span><i class="dot" id="dot"></i></header>
+<div id="banner"></div>
+<main>
+<section class="pg on" id="p-home">
+  <h2>🔥 داغ‌ترین‌های بازار امروز</h2>
+  <div class="grid" id="movers"></div>
+  <a class="tg" id="tg" target="_blank" rel="noopener">✈️ عضویت در کانال تلگرام</a>
+  <h2>💎 طلا و جفت‌ارزها</h2><div id="hf"></div>
+</section>
+<section class="pg" id="p-mk">
+  <div class="tabs"><button class="tab on" data-k="c">🪙 کوین‌ها</button><button class="tab" data-k="f">💵 پول‌ها و طلا</button></div>
+  <div id="list"></div>
+</section>
+<section class="pg" id="p-ch">
+  <div class="f"><select id="sy" style="flex:2"></select><select id="tf" style="flex:1"><option>1m</option><option selected>15m</option><option>1h</option><option>4h</option><option>1d</option></select></div>
+  <div class="f"><label class="o"><input type="checkbox" id="oS" checked>SMA20</label><label class="o"><input type="checkbox" id="oE" checked>EMA50</label><label class="o"><input type="checkbox" id="oB">Bollinger</label><label class="o"><input type="checkbox" id="oR" checked>RSI</label></div>
+  <div class="cvb"><canvas id="cv"></canvas></div>
+  <div class="card" style="margin-top:10px">
+    <div style="display:flex;justify-content:space-between;font-size:13px"><span>موجودی دمو: <b id="bal"></b></span><span>سرمایه: <b id="eq"></b></span></div>
+    <div class="f"><input id="amt" type="number" value="1000" min="10" style="flex:1" aria-label="مبلغ"><button class="btn buy" id="bb">خرید</button><button class="btn sell" id="bs">فروش</button></div>
+    <div id="pos"></div>
+    <button class="btn" id="rst" style="margin-top:6px">ریست حساب دمو</button>
+    <div class="note">حساب دمو مجازی است و فقط روی همین دستگاه ذخیره می‌شود؛ پول واقعی در کار نیست.</div>
+  </div>
+</section>
+<section class="pg" id="p-nw">
+  <h2>📰 اخبار مهم (نارنجی و قرمز)</h2>
+  <iframe id="cal" title="calendar"></iframe>
+  <div class="note">تقویم اقتصادی با فیلتر اهمیت متوسط و بالا؛ منبع TradingView (سایت Forex Factory API عمومی ندارد).</div>
+  <h2>🇺🇸 ترامپ</h2>
+  <a class="tg" style="background:linear-gradient(90deg,#111,#444)" target="_blank" rel="noopener" href="https://x.com/realDonaldTrump">𝕏 پست‌های ترامپ در ایکس</a>
+  <a class="tg" style="background:linear-gradient(90deg,#5448ee,#7c5cff)" target="_blank" rel="noopener" href="https://truthsocial.com/@realDonaldTrump">Truth Social ترامپ</a>
+</section>
+<section class="pg" id="p-an">
+  <h2>🧠 تحلیل تکنیکال خودکار ۳ روز اخیر</h2>
+  <div id="anl">در حال محاسبه…</div>
+  <div class="note">این تحلیل از روی اندیکاتورها (RSI و میانگین‌ها) روی کندل‌های ساعتی ۳ روز اخیر ساخته می‌شود و نظر اساتید یا کانال‌های تحلیلی نیست. توصیه مالی نیست.</div>
+</section>
+<section class="pg" id="p-ad">
+  <h2>⚙️ مدیریت اپ</h2>
+  <div class="card" id="lock"><input id="pw" type="password" placeholder="رمز مدیریت (اولین ورود: رمز دلخواهتان ثبت می‌شود)"><button class="btn pri" id="un" style="margin-top:8px;width:100%">ورود</button></div>
+  <div class="card hid" id="adm">
+    <label>عنوان اپ</label><input id="aT"><label>لینک تلگرام</label><input id="aG" style="direction:ltr"><label>پیام اعلان بالای صفحه (خالی = بدون اعلان)</label><input id="aB">
+    <label>رمز جدید (اختیاری)</label><input id="aP" type="password">
+    <button class="btn pri" id="sv" style="margin-top:10px;width:100%">ذخیره تغییرات</button>
+    <div class="note">تغییرات فقط روی همین دستگاه ذخیره می‌شود. برای اعمال روی همه کاربران باید بک‌اند اضافه شود.</div>
+  </div>
+</section>
+</main>
+<nav id="nav">
+<button data-p="home" class="on"><i>🏠</i>خانه</button><button data-p="mk"><i>📊</i>بازار</button><button data-p="ch"><i>📈</i>چارت</button><button data-p="nw"><i>📰</i>اخبار</button><button data-p="an"><i>🧠</i>تحلیل</button><button data-p="ad"><i>⚙️</i>مدیریت</button>
+</nav>
+<script>
+const $=id=>document.getElementById(id),ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const S=[['BTCUSDT','BTC/USD','c'],['ETHUSDT','ETH/USD','c'],['BNBUSDT','BNB/USD','c'],['SOLUSDT','SOL/USD','c'],['XRPUSDT','XRP/USD','c'],['DOGEUSDT','DOGE/USD','c'],['ADAUSDT','ADA/USD','c'],['AVAXUSDT','AVAX/USD','c'],
+['EURUSDT','EUR/USD','f'],['GBPUSDT','GBP/USD','f'],['AUDUSDT','AUD/USD','f'],['PAXGUSDT','XAU/USD (طلا)','f']].map(a=>({s:a[0],n:a[1],t:a[2]}));
+const nm=s=>S.find(x=>x.s===s).n,st={};
+const fm=v=>v==null?'—':(+v).toLocaleString('en-US',{minimumFractionDigits:v>=1000?2:v>=1?4:6,maximumFractionDigits:v>=1000?2:v>=1?4:6});
+let cfg=Object.assign({title:'Hy Forex Market',tg:'https://t.me/Hy_forex',banner:'',pass:''},ld('cfg',{}));
+function applyCfg(){$('ttl').textContent=cfg.title;document.title=cfg.title;$('tg').href=cfg.tg;const b=$('banner');b.textContent=cfg.banner;b.style.display=cfg.banner?'block':'none'}
+applyCfg();
+let cur='home',sym='BTCUSDT',cd=[],ws2=null,mkT='c';
+function go(p){cur=p;document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
+ if(p==='nw'&&!$('cal').src)$('cal').src='https://www.tradingview-widget.com/embed-widget/events/?locale=en#'+encodeURIComponent(JSON.stringify({colorTheme:'dark',isTransparent:true,width:'100%',height:'520',importanceFilter:'0,1',currencyFilter:'USD,EUR,GBP,JPY,AUD,CAD,CHF,NZD'}));
+ if(p==='an')analyze();if(p==='ch')draw();render()}
+$('nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.p)};
+const dot=on=>$('dot').className='dot'+(on?' on':'');
+function tick(s,c,o,h,l){st[s]={c:+c,o:+o,h:+h,l:+l}}
+function conn(){const w=new WebSocket('wss://stream.binance.com:9443/stream?streams='+S.map(x=>x.s.toLowerCase()+'@miniTicker').join('/'));
+ w.onopen=()=>dot(true);w.onmessage=e=>{const d=JSON.parse(e.data).data;if(d)tick(d.s,d.c,d.o,d.h,d.l)};w.onclose=()=>{dot(false);setTimeout(conn,3000)};w.onerror=()=>w.close()}
+const chg=s=>st[s]?(st[s].c-st[s].o)/st[s].o*100:null;
+const chip=s=>{const c=chg(s);return c==null?'':`<span class="chip ${c>=0?'up':'dn'}">${c>=0?'+':''}${c.toFixed(2)}%</span>`};
+const rowH=x=>`<div class="row" data-s="${x.s}"><b>${x.n}</b><span class="r"><div class="p">${fm(st[x.s]&&st[x.s].c)}</div>${chip(x.s)}</span></div>`;
+function render(){
+ const A=S.filter(x=>st[x.s]);
+ if(cur==='home'&&A.length){const by=f=>A.slice().sort((a,b)=>f(b)-f(a))[0],g=by(x=>chg(x.s)),l=by(x=>-chg(x.s)),v=by(x=>(st[x.s].h-st[x.s].l)/st[x.s].o),f=A.filter(x=>x.t==='f').sort((a,b)=>Math.abs(chg(b.s))-Math.abs(chg(a.s)))[0];
+  const card=(c,t,x)=>x?`<div class="mv ${c}" data-s="${x.s}"><small>${t}</small><b>${x.n}</b><span>${chg(x.s)>=0?'+':''}${chg(x.s).toFixed(2)}%</span></div>`:'';
+  $('movers').innerHTML=card('g1','🚀 موشک بازار',g)+card('g2','🩸 بیشترین ریزش',l)+card('g3','⚡ پرنوسان‌ترین',v)+card('g4','💎 ستاره‌ی پول‌ها',f);
+  $('hf').innerHTML=S.filter(x=>x.t==='f').map(rowH).join('')}
+ if(cur==='mk')$('list').innerHTML=S.filter(x=>x.t===mkT).map(rowH).join('');
+ if(cur==='ch')acct()}
+document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('.tab');if(!b)return;mkT=b.dataset.k;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t===b));render()};
+document.querySelector('main').addEventListener('click',e=>{const r=e.target.closest('[data-s]');if(r){sym=r.dataset.s;$('sy').value=sym;go('ch');load()}});
+$('sy').innerHTML=S.map(x=>`<option value="${x.s}">${x.n}</option>`).join('');
+$('sy').onchange=()=>{sym=$('sy').value;load()};$('tf').onchange=load;['oS','oE','oB','oR'].forEach(i=>$(i).onchange=draw);
+async function load(){const s=sym,tf=$('tf').value;if(ws2){ws2.onclose=null;ws2.close();ws2=null}
+ try{const k=await (await fetch(`https://api.binance.com/api/v3/klines?symbol=${s}&interval=${tf}&limit=200`)).json();if(s!==sym)return;cd=k.map(x=>({t:x[0],o:+x[1],h:+x[2],l:+x[3],c:+x[4]}));draw();
+ ws2=new WebSocket(`wss://stream.binance.com:9443/ws/${s.toLowerCase()}@kline_${tf}`);ws2.onmessage=e=>{const k=JSON.parse(e.data).k,n={t:k.t,o:+k.o,h:+k.h,l:+k.l,c:+k.c},L=cd[cd.length-1];if(L&&L.t===n.t)cd[cd.length-1]=n;else{cd.push(n);if(cd.length>400)cd.shift()}if(cur==='ch')draw()}}catch(e){}}
+const sma=(a,n)=>a.map((_,i)=>i<n-1?null:a.slice(i-n+1,i+1).reduce((x,y)=>x+y,0)/n);
+const ema=(a,n)=>{const k=2/(n+1);let e=null;return a.map((v,i)=>{e=e==null?v:v*k+e*(1-k);return i<n-1?null:e})};
+const rsi=(a,n=14)=>{let g=0,l=0;return a.map((v,i)=>{if(!i)return null;const d=v-a[i-1];if(i<=n){g+=Math.max(d,0)/n;l+=Math.max(-d,0)/n}else{g=(g*(n-1)+Math.max(d,0))/n;l=(l*(n-1)+Math.max(-d,0))/n}return i<n?null:l===0?100:100-100/(1+g/l)})};
+function draw(){const cv=$('cv'),W=cv.clientWidth,H=cv.clientHeight;if(!W||cd.length<25)return;const r=devicePixelRatio||1;cv.width=W*r;cv.height=H*r;const g=cv.getContext('2d');g.scale(r,r);
+ const n=Math.min(cd.length,90),D=cd.slice(-n),cl=cd.map(x=>x.c),sl=a=>a.slice(-n),m20=sma(cl,20),s20=sl(m20),e50=sl(ema(cl,50)),rs=sl(rsi(cl));
+ const sd=m20.map((m,i)=>m==null?null:Math.sqrt(cl.slice(i-19,i+1).reduce((x,y)=>x+(y-m)**2,0)/20)),bu=sl(m20.map((m,i)=>m==null?null:m+2*sd[i])),bl=sl(m20.map((m,i)=>m==null?null:m-2*sd[i]));
+ const R=62,pad=10,showR=$('oR').checked,mh=showR?H*.72:H-6,rh=H-mh-8;
+ let hi=Math.max(...D.map(x=>x.h)),lo=Math.min(...D.map(x=>x.l));const sp=hi-lo||1;hi+=sp*.06;lo-=sp*.06;
+ const X=i=>pad+(W-R-pad)*(i+.5)/n,Y=v=>6+(mh-12)*(1-(v-lo)/(hi-lo)),bw=Math.max(2,(W-R-pad)/n*.65);
+ g.font='10px Tahoma';g.textAlign='left';
+ for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);g.strokeStyle='#27316b66';g.beginPath();g.moveTo(0,y);g.lineTo(W-R,y);g.stroke();g.fillStyle='#8e9acb';g.fillText(fm(v),W-R+4,y+3)}
+ D.forEach((c,i)=>{const up=c.c>=c.o;g.strokeStyle=g.fillStyle=up?'#19c37d':'#ff4d6d';g.beginPath();g.moveTo(X(i),Y(c.h));g.lineTo(X(i),Y(c.l));g.stroke();g.fillRect(X(i)-bw/2,Math.min(Y(c.o),Y(c.c)),bw,Math.max(1,Math.abs(Y(c.o)-Y(c.c))))});
+ const ln=(a,col,f)=>{g.strokeStyle=col;g.lineWidth=1.4;g.beginPath();let s=false;a.forEach((v,i)=>{if(v==null)return;const y=f(v);s?g.lineTo(X(i),y):g.moveTo(X(i),y);s=true});g.stroke();g.lineWidth=1};
+ if($('oS').checked)ln(s20,'#f5b83d',Y);if($('oE').checked)ln(e50,'#22d3ee',Y);if($('oB').checked){ln(bu,'#b6a4ff',Y);ln(bl,'#b6a4ff',Y)}
+ const last=cd[cd.length-1].c,ly=Y(last);g.setLineDash([4,3]);g.strokeStyle='#f5b83d';g.beginPath();g.moveTo(0,ly);g.lineTo(W-R,ly);g.stroke();g.setLineDash([]);g.fillStyle='#f5b83d';g.fillRect(W-R,ly-8,R,16);g.fillStyle='#000';g.fillText(fm(last),W-R+3,ly+3);
+ if(showR){const y0=mh+8,Yr=v=>y0+rh*(1-v/100);g.fillStyle='#8e9acb';g.fillText('RSI 14',4,y0+10);[30,70].forEach(v=>{g.strokeStyle='#27316b';g.beginPath();g.moveTo(0,Yr(v));g.lineTo(W-R,Yr(v));g.stroke();g.fillText(v,W-R+4,Yr(v)+3)});ln(rs,'#7c5cff',Yr)}}
+addEventListener('resize',draw);
+let acc=ld('acc',{bal:10000,pos:[]});
+const pnl=p=>st[p.s]?(st[p.s].c-p.e)*p.q*(p.d==='B'?1:-1):0;
+function acct(){let o=0;acc.pos.forEach(p=>o+=pnl(p));$('bal').textContent=acc.bal.toFixed(2)+'$';$('eq').textContent=(acc.bal+o).toFixed(2)+'$';
+ $('pos').innerHTML=acc.pos.map((p,i)=>{const v=pnl(p);return `<div class="an"><span>${p.d==='B'?'🟢 خرید':'🔴 فروش'} ${nm(p.s)} @ ${fm(p.e)}</span><span class="${v>=0?'up':'dn'}" style="direction:ltr">${v.toFixed(2)}$</span><button class="btn" data-x="${i}">بستن</button></div>`}).join('')}
+function openPos(d){const a=+$('amt').value,p=st[sym];if(!p||!(a>0))return;if(a>acc.bal)return alert('موجودی دمو کافی نیست');acc.bal-=a;acc.pos.push({s:sym,d,e:p.c,q:a/p.c,a});sv('acc',acc);acct()}
+$('bb').onclick=()=>openPos('B');$('bs').onclick=()=>openPos('S');
+$('pos').onclick=e=>{const i=e.target.dataset.x;if(i==null)return;const p=acc.pos[i];acc.bal+=p.a+pnl(p);acc.pos.splice(i,1);sv('acc',acc);acct()};
+$('rst').onclick=()=>{acc={bal:10000,pos:[]};sv('acc',acc);acct()};
+let anAt=0;
+async function analyze(){if(Date.now()-anAt<300000)return;anAt=Date.now();const out=[];
+ await Promise.all(S.map(async x=>{try{const k=await (await fetch(`https://api.binance.com/api/v3/klines?symbol=${x.s}&interval=1h&limit=72`)).json(),c=k.map(a=>+a[4]),vol=k.reduce((s,a)=>s+ +a[7],0),r=rsi(c).pop(),m=sma(c,24).pop(),ch=(c[c.length-1]-c[0])/c[0]*100,l=c[c.length-1];
+  let v='⚪ خنثی';if(l>m&&r<70&&ch>0)v='🟢 روند صعودی';else if(l<m&&r>30&&ch<0)v='🔴 روند نزولی';if(r>=70)v='🟠 اشباع خرید (احتمال اصلاح)';if(r<=30)v='🟠 اشباع فروش (احتمال برگشت)';
+  out.push({n:x.n,vol,ch,r,v})}catch(e){}}));
+ out.sort((a,b)=>b.vol-a.vol);$('anl').innerHTML=out.map(o=>`<div class="an"><span><b>${o.n}</b><br><span class="${o.ch>=0?'up':'dn'}" style="direction:ltr;display:inline-block">${o.ch>=0?'+':''}${o.ch.toFixed(2)}% (۳ روز)</span></span><span style="text-align:left">${o.v}<br>RSI ${o.r.toFixed(0)}</span></div>`).join('')||'خطا در دریافت داده'}
+$('un').onclick=()=>{if(!cfg.pass){if($('pw').value.length<4)return alert('یک رمز حداقل ۴ حرفی انتخاب کنید');cfg.pass=$('pw').value;sv('cfg',cfg)}
+ if($('pw').value!==cfg.pass)return alert('رمز اشتباه است');$('lock').classList.add('hid');$('adm').classList.remove('hid');$('aT').value=cfg.title;$('aG').value=cfg.tg;$('aB').value=cfg.banner};
+$('sv').onclick=()=>{cfg.title=$('aT').value||cfg.title;cfg.tg=$('aG').value||cfg.tg;cfg.banner=$('aB').value;if($('aP').value.length>=4)cfg.pass=$('aP').value;sv('cfg',cfg);applyCfg();alert('ذخیره شد')};
+async function piSignIn(){try{if(!window.Pi)return;await Pi.init({version:"2.0"});const a=await Pi.authenticate(["username"],function(){});
+ const r=await fetch('https://backend.appstudio-u7cm9zhmha0ruwv8.piappengine.com/pi/auth/v1/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({accessToken:a.accessToken})});
+ if(!r.ok)throw new Error(r.status);const d=await r.json();$('user').textContent='@'+d.user.username}catch(e){console.error(e)}}
+conn();load();setInterval(render,1000);piSignIn();
+</script>
+</body>
+</html>
